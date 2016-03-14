@@ -8,7 +8,7 @@ Add belixir to your list of dependencies in `mix.exs`:
 
 ```elixir
   def deps do
-    [{:belixir, "~> 0.1.0"}]
+    [{:belixir, "~> 0.2.0"}]
   end
 ```
 

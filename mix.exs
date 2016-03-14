@@ -3,7 +3,7 @@ defmodule Belixir.Mixfile do
 
   def project do
     [app: :belixir,
-     version: "0.1.0",
+     version: "0.2.0",
      elixir: "~> 1.2",
      description: description,
      package: package,
@@ -34,14 +34,15 @@ defmodule Belixir.Mixfile do
 
   defp description do
     """
-    Benchmark ips tool for elixir-lang. For now it only runs benchmark for 5 seconds.
+    Benchmark ips tool for elixir-lang. Runs given codes in given seconds and compares them.
     """
   end
 
   defp package do
     [
       maintainers: ["Mehmet Emin İNAÇ"],
-      links: %{"GitHub" => "https://github.com/meinac/belixir"}
+      links: %{"GitHub" => "https://github.com/meinac/belixir"},
+      licenses: ["MIT"]
     ]
   end
 end
