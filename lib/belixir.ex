@@ -1,5 +1,7 @@
 defmodule Belixir do
 
+  @default_duration 5
+
   defmacro __using__(_op) do
     quote do
       use Application
@@ -9,7 +11,7 @@ defmodule Belixir do
 
       def start(_type, _args) do
         res = Belixir.Supervisor.start_link([])
-        Belixir.Comparison.compare([module: __MODULE__, benchmarks: benchmarks])
+        Belixir.Comparison.compare(Map.merge(%{ module: __MODULE__ }, configuration))
         res
       end
     end
@@ -27,10 +29,10 @@ defmodule Belixir do
     end
   end
 
-  defmacro compare do
+  defmacro compare(duration \\ @default_duration) do
     quote do
-      def benchmarks do
-        @benchmarks
+      def configuration do
+        %{ benchmarks: @benchmarks, duration: unquote(duration) }
       end
     end
   end

@@ -1,16 +1,18 @@
 # Belixir
 
-Elixir iteration per seconds benchmark tool inspired from awesome Ruby `benchmark-ips` gem.
+Elixir iterations per second benchmark tool inspired from awesome Ruby `benchmark-ips` gem.
 
 ## Installation
 
-The package can be installed as:
+Add belixir to your list of dependencies in `mix.exs`:
 
-  1. Add belixir to your list of dependencies in `mix.exs`:
+```elixir
+  def deps do
+    [{:belixir, "~> 0.1.0"}]
+  end
+```
 
-        def deps do
-          [{:belixir, "~> 0.1.0"}]
-        end
+Then run `mix deps.get`.
 
 ## Example Usage
 
@@ -34,7 +36,7 @@ defmodule MyBenchmark do
     end
   end
 
-  Belixir.compare
+  Belixir.compare(3) # Runs each benchmark for 3 seconds. If you don't send any parameter, it runs for 5 seconds.
 
 end
 ```
@@ -54,7 +56,7 @@ Then run it with `iex -S mix`.
 ```
 
 *************************** foo **********************
- 5.01 s   138.85 M total    27.77 M ips
+ 5.00 s   138.85 M total    27.77 M ips
 
 
 *************************** bar **********************

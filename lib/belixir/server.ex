@@ -12,8 +12,8 @@ defmodule Belixir.Server do
     { :ok, _pid } = GenServer.start_link(__MODULE__, initial_list, name: __MODULE__)
   end
 
-  def benchmark(module, method, limit, warm_up, timing) do
-    GenServer.call(__MODULE__, { :benchmark, module, method, limit, warm_up }, timing)
+  def benchmark(module, method, limit, warm_up, timeout) do
+    GenServer.call(__MODULE__, { :benchmark, module, method, limit, warm_up }, timeout)
   end
 
   #############
