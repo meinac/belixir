@@ -6,6 +6,7 @@ defmodule Belixir.Comparison do
   def compare(%{ module: module, benchmarks: benchmarks, duration: duration }) when length(benchmarks) > 0 do
     Enum.map(benchmarks, &benchmark(module, &1, duration))
     |> Enum.map(&Belixir.Result.inspect(&1))
+    |> Belixir.Result.comparison
   end
 
   def compare(_) do

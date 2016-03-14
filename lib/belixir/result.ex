@@ -1,12 +1,28 @@
 defmodule Belixir.Result do
 
-  def inspect({name, [total_run, run_time]}) do
+  def inspect({ name, [ total_run, run_time ] }) do
     p_iter_p_sec = pretty_ips(total_run, run_time)
     p_total_run  = pretty_total_run(total_run)
     p_run_time   = pretty_run_time(run_time)
 
-    IO.puts([IO.ANSI.green, "\n*************************** #{name} **********************"])    
-    IO.puts([IO.ANSI.green, "#{p_run_time} #{p_total_run} total #{p_iter_p_sec} ips\n"])
+    IO.puts([ IO.ANSI.green, "\n*************************** #{name} **********************" ])
+    IO.puts([ IO.ANSI.green, "#{p_run_time} #{p_total_run} total #{p_iter_p_sec} ips\n" ])
+    { name, total_run }
+  end
+
+  def comparison(results) do
+    Enum.sort_by(results, fn ({ name, runs }) -> runs end, &>=/2)
+    |> pretty_comparison
+  end
+
+  defp pretty_comparison([ { fastest_name, fastest_runs } | t ]) do
+    IO.puts "`#{fastest_name}` is fastest"
+    Enum.map(t, &compare_with(fastest_name, fastest_runs, &1))
+    IO.puts "\n"
+  end
+
+  defp compare_with(fastest_name, fastest_runs, { name, runs }) do
+    IO.puts "`#{name}` is #{Float.round((fastest_runs / runs), 2)} times slower than `#{fastest_name}`"
   end
 
   defp pretty_ips(total_run, run_time) do

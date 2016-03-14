@@ -5,7 +5,6 @@ defmodule Belixir do
   defmacro __using__(_op) do
     quote do
       use Application
-      require Logger
 
       Module.register_attribute __MODULE__, :benchmarks, accumulate: true
 
